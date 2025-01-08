@@ -1,0 +1,59 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+# Maven or Gradle build directories
+/target/
+/build/
+
+# IDE-specific files
+/.idea/
+/*.iml
+*.class
+
+# Log files
+*.log
+
+# OS-specific files
+.DS_Store
+
+# Environment variables and secrets
+.env
+application.properties
+application.yml
+
+# Ignore generated files from testing
+/test-output/
+
+# Git-specific files
+.git/
