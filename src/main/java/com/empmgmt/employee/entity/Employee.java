@@ -13,6 +13,10 @@ public class Employee {
         this.department = department;
     }
 
+    public Employee() {
+
+    }
+
     public int getId() {
         return id;
     }
@@ -43,5 +47,15 @@ public class Employee {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", salary=" + salary +
+                ", department='" + department + '\'' +
+                '}';
     }
 }
