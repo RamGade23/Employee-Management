@@ -28,19 +28,11 @@ public class EmployeeController {
     @GetMapping
     public List<Employee> getEmployees() {
         System.out.println("inside getEmployee method");
-        return employees;
+        return employeeServices.getEmployees();
     }
 
-    @GetMapping("/{id}")
-    public Employee getEmployeeById(@PathVariable long id) { //104
-        //System.out.println("id : "+id);
-//        Employee emp = null;
-//        for (Employee employee : employees) {
-//            if (employee.getId() == id) { //101,102,103,104
-//                 emp = employee;
-//            }
-//        }
-//        return emp;
-        return employees.stream().filter(emp -> emp.getId() == id).findFirst().orElse(new Employee());
+    @GetMapping("/{id}") //api/employees/8
+    public Employee getEmployeeById(@PathVariable long id) {//id =7
+        return employeeServices.getEmployeeById(id);
     }
 }
