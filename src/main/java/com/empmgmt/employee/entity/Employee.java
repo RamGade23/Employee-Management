@@ -1,12 +1,22 @@
 package com.empmgmt.employee.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Employee {
-    private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String name;
     private long salary;
     private String department;
 
-    public Employee(int id, String name, long salary, String department) {
+    public Employee(Long id, String name, long salary, String department) {
         this.id = id;
         this.name = name;
         this.salary = salary;
@@ -17,11 +27,11 @@ public class Employee {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
