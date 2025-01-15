@@ -24,6 +24,23 @@ public class EmployeeService {
 
     public Employee getEmployeeById(Long id) {//id = 7
          Optional<Employee> employee = employeeRepository.findById(id); //select * from employee where id = 8;
-        return employee.orElse(new Employee());
+        return employee.orElse(null);
+    }
+
+    public String updateEmployee(Long id, Employee employee) {//2, Komal
+        Employee empFromDb = getEmployeeById(id); // actual object or null
+        if (empFromDb == null) {
+            return "Requested employee is not present in the database. please use different id";
+        } else {
+            empFromDb.setDepartment(employee.getDepartment());
+            empFromDb.setSalary(employee.getSalary());
+            empFromDb.setName(employee.getName());
+            saveEmployee(empFromDb);
+            return "Employee updated successfully!";
+        }
+    }
+
+    public void deleteEmployee(Long id) {
+        employeeRepository.deleteById(id);
     }
 }
