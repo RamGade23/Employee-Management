@@ -22,12 +22,12 @@ public class EmployeeService {
         return employeeRepository.findAll(); //SELECT * FROM employee;
     }
 
-    public Employee getEmployeeById(Long id) {//id = 7
+    public Employee getEmployeeById(Long id) {//id = 20
          Optional<Employee> employee = employeeRepository.findById(id); //select * from employee where id = 8;
         return employee.orElse(null);
     }
 
-    public String updateEmployee(Long id, Employee employee) {//2, Komal
+    public String updateEmployee(Long id, Employee employee) {//7, Diksha
         Employee empFromDb = getEmployeeById(id); // actual object or null
         if (empFromDb == null) {
             return "Requested employee is not present in the database. please use different id";
@@ -40,7 +40,12 @@ public class EmployeeService {
         }
     }
 
-    public void deleteEmployee(Long id) {
-        employeeRepository.deleteById(id);
+    public String deleteEmployee(Long id) {
+        Employee empFromDb = getEmployeeById(id);
+        if (empFromDb != null) {
+            employeeRepository.deleteById(id);
+            return "Employee deleted successfully!";
+        }
+        return "Requested employee is not present in the database";
     }
 }
