@@ -11,8 +11,21 @@ import java.util.Optional;
 @Service
 public class EmployeeService {
 
-    @Autowired
-    EmployeeRepository employeeRepository;
+    //field injection
+    //@Autowired
+    private EmployeeRepository employeeRepository;
+
+    //Constructor injection
+//    public EmployeeService(EmployeeRepository employeeRepository) {
+//        System.out.println("EmployeeService : constructor injection");
+//        this.employeeRepository = employeeRepository;
+//    }
+
+//    @Autowired
+    public void setEmployeeRepository(EmployeeRepository employeeRepository) {
+        System.out.println("EmployeeService : setter injection");
+        this.employeeRepository = employeeRepository;
+    }
 
     public Employee saveEmployee(Employee employee) {
         return employeeRepository.save(employee);

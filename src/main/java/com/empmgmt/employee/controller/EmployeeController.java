@@ -14,9 +14,15 @@ import java.util.List;
 @RequestMapping("/api/employees")
 public class EmployeeController {
 
-    @Autowired
-    EmployeeService employeeServices;
-    List<Employee> employees = new ArrayList<>(); //replace by database
+    //Field injection
+//    @Autowired
+    private EmployeeService employeeServices;
+
+    //Constructor injection
+    public EmployeeController(EmployeeService employeeServices) {
+        System.out.println("EmployeeController : constructor injection");
+        this.employeeServices = employeeServices;
+    }
 
     // api/employees
     @PostMapping
