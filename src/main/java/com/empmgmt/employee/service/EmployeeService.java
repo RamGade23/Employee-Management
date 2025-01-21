@@ -21,7 +21,8 @@ public class EmployeeService {
 //        this.employeeRepository = employeeRepository;
 //    }
 
-//    @Autowired
+    //setter injection
+    @Autowired
     public void setEmployeeRepository(EmployeeRepository employeeRepository) {
         System.out.println("EmployeeService : setter injection");
         this.employeeRepository = employeeRepository;
@@ -36,7 +37,7 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(Long id) {//id = 20
-         Optional<Employee> employee = employeeRepository.findById(id); //select * from employee where id = 8;
+        Optional<Employee> employee = employeeRepository.findById(id); //select * from employee where id = 8;
         return employee.orElse(null);
     }
 
