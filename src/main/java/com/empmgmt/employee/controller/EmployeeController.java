@@ -2,6 +2,7 @@ package com.empmgmt.employee.controller;
 
 import com.empmgmt.employee.entity.Employee;
 import com.empmgmt.employee.service.EmployeeService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
+
+    private String abc;
+
+    @PostConstruct
+    public void init() {
+        // This method will be executed after the bean's dependencies are injected
+        abc = "Vishal";
+        System.out.println("EmployeeController has been initialized");
+    }
 
     //Field injection
 //    @Autowired
@@ -35,11 +45,12 @@ public class EmployeeController {
 
     @GetMapping
     public ResponseEntity<List<Employee>> getEmployees() {
+        System.out.println("abc : " + abc);
         System.out.println("inside getEmployee method");
-         List<Employee> employeeList = employeeServices.getEmployees();
-         if (employeeList.isEmpty()) {
-             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-         }
+        List<Employee> employeeList = employeeServices.getEmployees();
+        if (employeeList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
         return new ResponseEntity<>(employeeList, HttpStatus.OK);
     }
 
@@ -64,10 +75,10 @@ public class EmployeeController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {//2
         String response = employeeServices.deleteEmployee(id);
-            if (response.contains("successfully")) {
-                return new ResponseEntity<>(response, HttpStatus.OK);
-            }
-            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        if (response.contains("successfully")) {
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 
     }
 }
