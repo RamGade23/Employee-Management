@@ -9,10 +9,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employees")
+@CrossOrigin(origins = "http://localhost:4200")
 public class EmployeeController {
 
     private String abc;
@@ -36,11 +39,14 @@ public class EmployeeController {
 
     // api/employees
     @PostMapping
-    public ResponseEntity<String> addEmployee(@RequestBody Employee employee) {
+    public ResponseEntity<Map<String, String>> addEmployee(@RequestBody Employee employee) {
         System.out.println("input request : " + employee.toString());
         //employees.add(employee);
         Employee savedEmployee = employeeServices.saveEmployee(employee);
-        return new ResponseEntity<>("Employee inserted successfully with id : " + savedEmployee.getId(), HttpStatus.CREATED);
+        String resp = "Employee inserted successfully with id : " + savedEmployee.getId();
+        Map<String, String> response = new HashMap<>();
+        response.put("message", resp);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -64,12 +70,14 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {//2,
+    public ResponseEntity<Map<String, String>> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {//2,
         String updateResponse = employeeServices.updateEmployee(id, employee);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", updateResponse);
         if (updateResponse.contains("updated")) { // Assuming your service gives meaningful feedback
-            return new ResponseEntity<>(updateResponse, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
-        return new ResponseEntity<>(updateResponse, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")
