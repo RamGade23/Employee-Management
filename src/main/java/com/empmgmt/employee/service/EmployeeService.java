@@ -3,12 +3,14 @@ package com.empmgmt.employee.service;
 import com.empmgmt.employee.entity.Employee;
 import com.empmgmt.employee.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Scope("prototype")
 public class EmployeeService {
 
     //field injection
