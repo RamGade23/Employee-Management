@@ -81,12 +81,14 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable Long id) {//2
+    public ResponseEntity<Map<String, String>> deleteEmployee(@PathVariable Long id) {//2
         String response = employeeServices.deleteEmployee(id);
+        Map<String, String> res = new HashMap<>();
+        res.put("message", response);
         if (response.contains("successfully")) {
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            return new ResponseEntity<>(res, HttpStatus.OK);
         }
-        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(res, HttpStatus.NOT_FOUND);
 
     }
 }
